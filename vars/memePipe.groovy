@@ -43,13 +43,13 @@ def call(Map pipelineParams) {
           
                 //echo 'Building jars for pipelineParams.common'
                 //sh "./gradlew :${pipelineParams.common}:bootJar --stacktrace"
-        post {
-            failure {
-                mail to: pipelineParams.email, subject: 'Pipeline failed', body: "${env.BUILD_URL}"
-            }
-        }
-        }
-    }
+        //post {
+            //failure {
+                //mail to: pipelineParams.email, subject: 'Pipeline failed', body: "${env.BUILD_URL}"
+            //}
+        //}
+        //}
+    //}
 }
 }
 }
