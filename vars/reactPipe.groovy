@@ -26,7 +26,7 @@ stages {
             parallel {
                 stage('latest') {                    
                     steps {
-                        sh """
+                        bash """
                             docker build -t ${env.IMAGE} .
                             docker push ${env.IMAGE}
                         """
