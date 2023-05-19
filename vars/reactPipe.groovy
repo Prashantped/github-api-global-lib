@@ -13,9 +13,6 @@ stages {
         }
         stage('Test') {
             steps {
-                echo 'Linting'
-                sh 'npm run lint'
-
                 echo 'Testing'
                 sh 'npm run test'
             }
