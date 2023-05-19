@@ -7,8 +7,6 @@ environment {
 stages {
         stage('Install dependencies') {
             steps {
-                sh 'npm -v'
-
                 echo 'Installing dependencies'
                 sh 'npm install'
             }
