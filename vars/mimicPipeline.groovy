@@ -34,16 +34,19 @@ def call(Map pipelineParams) {
                 }
             }
         }
-      catch (e) {
-    // If there was an exception thrown, the build failed
-    currentBuild.result = "FAILED"
-    throw e
-  } finally {
-    // Success or failure, always send notifications
-    notifyBuild(currentBuild.result)
-  }
+ post {
+       // only triggered when blue or green sign
+       success {
+           slackSend(color: 'good', message: "Build Passed")
+       }
+       // triggered when red sign
+       failure {
+           slackSend(color: 'danger', message: "Build failed")
+       }
+    }
 }
 }
 }
+
 
 
