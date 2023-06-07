@@ -1,6 +1,7 @@
 def call(Map pipelineParams) {
     pipeline {
         agent any
+        try{
         stages {
                stage('Compile') {
             steps {
@@ -32,17 +33,8 @@ def call(Map pipelineParams) {
                sh "./gradlew cleanTest ${pipelineParams.common}:test --stacktrace"    
                 }
             }
-                try {
-        
-
-        stage('Compile') {
-            echo 'Compiling'
         }
-
-        stage('Testing') {
-            echo 'Test Complete'
-        }
-  } catch (e) {
+      catch (e) {
     // If there was an exception thrown, the build failed
     currentBuild.result = "FAILED"
     throw e
