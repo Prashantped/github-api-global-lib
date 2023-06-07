@@ -32,6 +32,16 @@ def call(Map pipelineParams) {
                sh "./gradlew cleanTest ${pipelineParams.common}:test --stacktrace"    
                 }
             }
+            post {
+             // only triggered when blue or green sign
+            success {
+            slackSend ...
+                 }
+           // triggered when red sign
+            failure {
+            slackSend ...
+               }
+            }
 }
 }
 }
