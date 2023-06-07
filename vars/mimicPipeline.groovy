@@ -1,7 +1,6 @@
 def call(Map pipelineParams) {
     pipeline {
         agent any
-        try{
         stages {
                stage('Compile') {
             steps {
@@ -44,7 +43,6 @@ def call(Map pipelineParams) {
            slackSend(color: 'danger', message: "Build failed")
        }
     }
-}
 }
 }
 
