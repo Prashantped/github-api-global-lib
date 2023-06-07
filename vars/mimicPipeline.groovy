@@ -32,17 +32,26 @@ def call(Map pipelineParams) {
                sh "./gradlew cleanTest ${pipelineParams.common}:test --stacktrace"    
                 }
             }
-            post {
-             // only triggered when blue or green sign
-            success {
-            slackSend ...
-                 }
-           // triggered when red sign
-            failure {
-            slackSend ...
-               }
-            }
+                try {
+        
+
+        stage('Compile') {
+            echo 'Compiling'
+        }
+
+        stage('Testing') {
+            echo 'Test Complete'
+        }
+  } catch (e) {
+    // If there was an exception thrown, the build failed
+    currentBuild.result = "FAILED"
+    throw e
+  } finally {
+    // Success or failure, always send notifications
+    notifyBuild(currentBuild.result)
+  }
 }
 }
 }
+
 
